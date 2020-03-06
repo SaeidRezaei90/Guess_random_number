@@ -6,12 +6,24 @@
 #include <conio.h>
 #include <cstdlib>
 #include <ctime>
-
+#include <limits>
+#include <vector>
 
 using std::cout;
 using std::cin;
 using std::endl;
-void Play_Game();
+void Play_Game(); //declare
+
+void Print_array(int guess_array[], int array_size)
+{
+	std::cout << "You entered the following numbers:\n";
+	for (int i = 0; i < array_size; i++)
+	{
+		std::cout << guess_array[i] << "\t";
+	}
+	std::cout <<std::endl << "You guessed " << array_size << " numbers and " << guess_array[array_size - 1] << " is the right choice\n \n";
+}
+
 
 
 bool Play_or_Not()
@@ -20,57 +32,100 @@ bool Play_or_Not()
 	std::cout << "Please enter 0 to exit or 1 to play the game:\n";
 	do
 	{
-		std::cin >> choice;
-		switch (choice)
+		if (std::cin >> choice)
 		{
-		case 0:
-			std::cout << "See you later.";
-			return false;
-			
+			switch (choice)
+			{
+			case 0:
+				std::cout << "See you later\n.";
+				return false;
 
-		case 1:
-			Play_Game();
-			break;
+			case 1:
+				Play_Game();
+				break;
 
-		default:
-			std::cout << "You enterd a wrong number, Please enter 0 or 1:\n";
-			break;
+			default:
+				std::cout << "Please enter 0 or 1:\n";
+				break;
+			}
+		}
+		else
+		{
+			std::cout << "Please enter 0 or 1:\n";
+			cin.clear();
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			continue;
 		}
 	} while (choice != 0);
+
 	return true;
 }
 
 void Play_Game()
 {
 	std::cout << "\n \n \nYou are playing the game... \n";
-	int random = rand() % 100; //generate a random number between 0 to 99
-	std::cout <<"random number generated is: " << random << std::endl;
-	std::cout << "Please guess the random number between 0 to 99:\n";
-	int random_guess;
-	int times_of_played = 0;
+	int random = rand() % 21; //generate a random number between 0 to 20
+	std::cout << "random number generated is: " << random << std::endl;
+	std::cout << "Please guess the random number between 0 to 20:\n";
+	int random_guess_array[10];
+	int array_size = 0;
 	do
 	{
-		std::cin >> random_guess;
+		if (std::cin >> random_guess_array[array_size])
+		{
+			if (random_guess_array[array_size] == random)
+				std::cout << "\n \n Congratulation, You win\n";
+			else if (random_guess_array[array_size] < random)
+				std::cout << "You enter a low number\n";
+			else
+				std::cout << "You enter a high number\n";
+			
+			array_size++;
+		}
+		else
+		{
+			std::cout << "Please enter a valid number:\n";
+			cin.clear();
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			continue;
+		}
 
-		times_of_played++;
+	} while (random_guess_array[array_size - 1] != random && array_size < 10);
 
-	} while (random_guess != random && times_of_played < 10);
-
-	if (random_guess == random)
-		std::cout << "you entered " << times_of_played << " numbers to guess the random numeber correctly." << std::endl;
+	if (random_guess_array[array_size - 1] == random)
+		Print_array(random_guess_array, array_size);
 	else
-		std::cout << "Sorry, you are not allowed to guess more than 10 times." << std::endl;
-	
-	Play_or_Not();
-	
+		std::cout << "I'm sorry, you had 10 guesses but didn't guess correctly" << std::endl;
+
+	if (Play_or_Not() == false)
+		exit(0);
+
+}
+
+void Print_vector(std::vector<int> &items)
+{
+	items.push_back(100);
+	items.insert(items.begin(), 1);
+	std::cout << std::endl;
+	for (int i = 0; i < items.size(); i++)
+	{
+		std::cout << items[i] << "\t";
+	}
 }
 
 int main()
 {
-	srand(time(NULL));
-	if(Play_or_Not() == false)
-		return 0;
+	//srand(time(NULL));
 
+	//if (Play_or_Not() == false)
+	//	return 0;
+
+	std::vector<int> items = { 12,13,14 };
+	
+	Print_vector(items);
+	Print_vector(items);
+	Print_vector(items);
+	Print_vector(items);
 
 	_getch();
 	return 0;
