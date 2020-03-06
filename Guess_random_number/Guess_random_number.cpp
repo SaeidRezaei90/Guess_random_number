@@ -8,6 +8,7 @@
 #include <ctime>
 #include <limits>
 #include <vector>
+#include <array>
 
 using std::cout;
 using std::cin;
@@ -102,31 +103,14 @@ void Play_Game()
 
 }
 
-void Print_vector(std::vector<int> &items)
-{
-	items.push_back(100);
-	items.insert(items.begin(), 1);
-	std::cout << std::endl;
-	for (int i = 0; i < items.size(); i++)
-	{
-		std::cout << items[i] << "\t";
-	}
-}
-
 int main()
 {
-	//srand(time(NULL));
+	srand(time(NULL));
 
-	//if (Play_or_Not() == false)
-	//	return 0;
+	if (Play_or_Not() == false)
+		return 0;
 
-	std::vector<int> items = { 12,13,14 };
 	
-	Print_vector(items);
-	Print_vector(items);
-	Print_vector(items);
-	Print_vector(items);
-
 	_getch();
 	return 0;
 }
