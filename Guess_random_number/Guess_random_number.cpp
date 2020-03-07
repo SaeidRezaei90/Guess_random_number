@@ -96,7 +96,7 @@ void Play_Game()
 	if (random_guess_array[array_size - 1] == random)
 		Print_array(random_guess_array, array_size);
 	else
-		std::cout << "I'm sorry, you had 10 guesses but didn't guess correctly" << std::endl;
+		std::cout << "I'm sorry, you had 10 guesses but you didn't guess correctly" << std::endl;
 
 	if (Play_or_Not() == false)
 		exit(0);
