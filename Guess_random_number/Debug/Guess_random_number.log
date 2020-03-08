@@ -1,4 +1,4 @@
 ﻿  Guess_random_number.cpp
-e:\github rep\guess_a_random_number\guess_random_number\guess_random_number\guess_random_number.cpp(108): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+e:\github rep\guess_a_random_number\guess_random_number\guess_random_number\guess_random_number.cpp(157): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Guess_random_number.vcxproj -> E:\Github Rep\Guess_a_random_number\Guess_random_number\Debug\Guess_random_number.exe
   Guess_random_number.vcxproj -> E:\Github Rep\Guess_a_random_number\Guess_random_number\Debug\Guess_random_number.pdb (Full PDB)
